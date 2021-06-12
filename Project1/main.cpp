@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "normal.h"
 #include "analyticalFunctions.h"
+#include "test.h"
 
 using namespace std;
 
@@ -23,6 +24,8 @@ int main(){
 	
 	c = Digital_Put_Option( S_0,  K,  vol,  r,  T,  q);
 	cout<<"The price of the digital put is: "<<c<<endl;
+	Test_1();
+
 	
 	return 0;
 }
