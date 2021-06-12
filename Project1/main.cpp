@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include "normal.h"
 #include "analyticalFunctions.h"
-#include <CppUnitTest.h>
 
 using namespace std;
 
