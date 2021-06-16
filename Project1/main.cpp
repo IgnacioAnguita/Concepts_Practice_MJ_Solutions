@@ -24,8 +24,15 @@ int main(){
 	
 	c = Digital_Put_Option( S_0,  K,  vol,  r,  T,  q);
 	cout<<"The price of the digital put is: "<<c<<endl;
-	Test_1();
-
 	
+	Test_1();
+	Test_2();
+	Test_3();
+	Test_4();
+	Test_5();
+	Test_6();
+	Test_7();
+	Test_8();
+		
 	return 0;
 }

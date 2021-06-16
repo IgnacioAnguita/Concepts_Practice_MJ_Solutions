@@ -1,10 +1,6 @@
 #ifndef ANALYTICAL_H    // To make sure you don't declare the function more than once by including the header multiple times.
 #define ANALYTICAL_H
 
-#include <cmath>
-#include <math.h> 
-#include <iostream>
-#include <cstdlib>
 #include "normal.h"
 
 using namespace std;

@@ -1,7 +1,7 @@
 #include "analyticalFunctions.h"
 
 double Forward(double S_0, double K, double vol, double r, double T, double q){
-	return (S_0 * exp(r-q)*T - K) * exp(-r * T);	
+	return (S_0 * exp((r-q)*T) - K)  * exp(-r * T);
 }
 
 double ZCBond(double r, double T){
