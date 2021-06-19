@@ -9,6 +9,7 @@ void Test_5();
 void Test_6();
 void Test_7();
 void Test_8();
+void TestMC();
 
 #endif
 

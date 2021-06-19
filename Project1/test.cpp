@@ -1,7 +1,8 @@
 #include <cmath>
-
 #include "analyticalFunctions.h"
 #include "test.h"
+#include "PayOff.h"
+#include "SimpleMC.h"
 
 void Test_1(){
 	cout<<"Test 1: Put Call Parity: ";
@@ -190,6 +191,84 @@ void Test_8(){
 	}
 }
 
+void TestMC(){
+	
+	double S_0 = 60;
+	double K = 65;
+	double r = 0.08;
+	double vol = 0.3;
+	double T = 0.25;
+	double q = 0;
+	
+	double callAnalytical, digitalCallAnalytical;
+	double putAnalytical, digitalPutAnalytical;
+	
+	unsigned long NumberOfPaths = 2000000;
+	
+	PayOff payOffCall(K,PayOff::call);
+	PayOff payOffPut(K,PayOff::put);
+	PayOff payOffDigitalCall(K,PayOff::digitalCall);
+	PayOff payOffDigitalPut(K,PayOff::digitalPut);
+	
+	double callMC = SimpleMonteCarlo(payOffCall,
+						T,
+						S_0,
+						vol,
+						r,
+						NumberOfPaths);
+						
+	double digitalCallMC = SimpleMonteCarlo(payOffDigitalCall,
+						T,
+						S_0,
+						vol,
+						r,
+						NumberOfPaths);
+						
+	double putMC = SimpleMonteCarlo(payOffPut,
+						T,
+						S_0,
+						vol,
+						r,
+						NumberOfPaths);
+						
+	double digitalPutMC = SimpleMonteCarlo(payOffDigitalPut,
+						T,
+						S_0,
+						vol,
+						r,
+						NumberOfPaths);
+						
+						
+	
+	callAnalytical = Call_Option(S_0,  K,  vol,  r,  T, q);
+	digitalCallAnalytical = Digital_Call_Option(S_0,  K,  vol,  r,  T, q);
+	putAnalytical = Put_Option(S_0,  K,  vol,  r,  T, q);
+	digitalPutAnalytical = Digital_Put_Option(S_0,  K,  vol,  r,  T, q);
+	
+	cout<<"Test MC:"<<endl;
+	if((callAnalytical-callMC)/callMC<0.001){
+		cout<<"   Call test: passed"<<endl;
+	}
+	else{cout<<"   Call test: failed"<<endl;}
+	
+	if((digitalCallAnalytical-digitalCallMC)/digitalCallMC<0.001){
+		cout<<"   Digital Call test: passed"<<endl;
+	}
+	else{cout<<"   Digital Call test: failed"<<endl;}
+	
+	
+	if((putAnalytical-putMC)/putMC<0.001){
+		cout<<"   Put test: passed"<<endl;
+	}
+	else{cout<<"   Put test: failed"<<endl;}
+	
+	
+	if((digitalPutAnalytical-digitalPutMC)/digitalPutMC<0.001){
+		cout<<"   Digital Put test: passed"<<endl;
+	}
+	else{cout<<"   Digital Put test: failed"<<endl;}
+	
+}
 
 
 
